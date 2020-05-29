@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "Node.js",
+        "description": "Curso enfocado al desarrollo a backend en Node.js ;)"
+    },
+    {
+        "id": 2,
+        "name": "React.js",
+        "description": "Curso de desarrollo frontend en React.js :o"
+    },
+    {
+        "id": 3,
+        "name": "GraphQL",
+        "description": "Aprende a manejar este magnifico lenguaje de consultas :D"
+    }
+]
