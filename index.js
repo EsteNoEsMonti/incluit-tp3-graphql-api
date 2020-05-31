@@ -1,4 +1,6 @@
 /*
+LUCAS DANIEL MONTVIERO Tp3 GraphQL APi
+
 1 - Create 3 JSON files with Course, Student and Grade
 2 - Course have an id, name and description
 3 - Student have id, name, lastname, courseId (Assumption: 1 student only can be in one course)
@@ -231,11 +233,11 @@ const RootMutationType = new GraphQLObjectType({
         id: { type: GraphQLNonNull(GraphQLInt) },
       },
       resolve: (parent, args) => {
-        const courseDeleted = _.remove( Courses, (course) => {
-          return( course.id === args.id );
+        const courseDeleted = _.remove(Courses, (course) => {
+          return (course.id === args.id);
         });
-        console.log(courseDeleted); //si me lo muestra al Curso por consola
-        return( courseDeleted );
+        // console.log( courseDeleted[0] );
+        return (courseDeleted[0]);
       }
     },
     deleteStudent: {
@@ -246,24 +248,26 @@ const RootMutationType = new GraphQLObjectType({
       },
       resolve: (parent, args) => {
         const studentDeleted = _.remove(Students, (student) => {
-          return(student.id === args.id);
+          return (student.id === args.id);
         });
-        return studentDeleted;
+        // console.log( studentDeleted[0] );
+        return (studentDeleted[0]);
       }
     },
     deleteGrade: {
-        type: GradeType,
-        description: "Delete a Graded",
-        args: {
-          id: { type: GraphQLNonNull(GraphQLInt) },
-        },
-        resolve: (parent, args) => {
-          const gradeDeleted = _.remove(Grades, (graed) => {
-            return graed.id === args.id;
-          });
-          return gradeDeleted;
-        }
+      type: GradeType,
+      description: "Delete a Graded",
+      args: {
+        id: { type: GraphQLNonNull(GraphQLInt) },
+      },
+      resolve: (parent, args) => {
+        const gradeDeleted = _.remove(Grades, (grade) => {
+          return (grade.id === args.id);
+        });
+        // console.log( gradeDeleted[0] );
+        return (gradeDeleted[0]);
       }
+    }
   }),
 });
 
@@ -393,6 +397,13 @@ mutation {
 }
 --- --- --- --- ---
 Delete Course:
+mutation {
+  deleteCourse(id: 1){
+    id,
+    name,
+    description
+  }
+}
 
 --- --- --- --- --- --- --- --- --- ---
 Create Student:
@@ -406,7 +417,13 @@ mutation {
 }
 --- --- --- --- ---
 Delete Student:
-
+mutation {
+  deleteStudent(id: 1){
+    id
+    name
+    lastname
+  }
+}
 --- --- --- --- --- --- --- --- --- ---
 Create Grade:
 mutation {
@@ -426,4 +443,19 @@ mutation {
 }
 --- --- --- --- ---
 Delete Grade:
+mutation {
+  deleteGrade(id: 3){
+    id
+    courseId
+    course{
+      name
+    }
+    studentId
+    student{
+      name
+      lastname
+    }
+    grade
+  }
+}
 */
